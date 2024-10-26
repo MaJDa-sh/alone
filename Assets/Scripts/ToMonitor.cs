@@ -24,10 +24,9 @@ public class ToMonitor : MonoBehaviour
         monitorClick.onClick.AddListener(MonitorOpen);
         zoom = cam.orthographicSize;
         rectTransform = GetComponent<RectTransform>();
+
         float width = rectTransform.rect.width;
-        float height = rectTransform.rect.height;
-        
-        
+        float height = rectTransform.rect.height;        
     }
 
 
