@@ -641,6 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 419a2806ed94b254480ce11a1459e394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 2211605246701614264, guid: fc02660026c2d314cb0cf8948eef256d, type: 3}
   cam: {fileID: 1214941547}
 --- !u!224 &1528615977 stripped
 RectTransform:
