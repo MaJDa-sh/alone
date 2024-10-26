@@ -305,9 +305,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
-  zoomMultiplier: 2
-  defaultFov: 90
-  zoomDuration: 2
 --- !u!1 &634915765
 GameObject:
   m_ObjectHideFlags: 0
