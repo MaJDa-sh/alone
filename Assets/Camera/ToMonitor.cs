@@ -29,9 +29,10 @@ public class ToMonitor : MonoBehaviour
     {
         if(ToRoom.isZoomed) cam.orthographicSize = 2;
 
-        if (Input.GetMouseButtonDown(0) && !ToRoom.isZoomed && monitorClicked)
+        if (!ToRoom.isZoomed && monitorClicked)
         {
             zoom = 2f;
+            zoom = Mathf.Clamp(zoom, 2, 5);
             StartCoroutine(SceneDelay());
         } else if (ToRoom.isZoomed)
         {
@@ -39,16 +40,14 @@ public class ToMonitor : MonoBehaviour
             zoom = 5f;
             ToRoom.isZoomed = false;
         }
-
-        zoom = Mathf.Clamp(zoom, 2, 5);
         cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, zoom, ref velocity, smoothTime);
-        Debug.Log(cam.orthographicSize);
+        
     }
 
     private IEnumerator SceneDelay()
     {
         yield return new WaitForSeconds(0.7f);
-        SceneManager.LoadScene("Computer");
+        //SceneManager.LoadScene("Computer");
     }
 
     public void MonitorOpen()
