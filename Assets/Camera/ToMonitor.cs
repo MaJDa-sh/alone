@@ -11,6 +11,7 @@ public class ToMonitor : MonoBehaviour
     private float velocity = 0f;
     private float smoothTime = 0.25f;
     bool monitorClicked = false;
+    int isZooming = 0;
 
     public Button monitorClick;
 
@@ -30,22 +31,38 @@ public class ToMonitor : MonoBehaviour
     }
 
 
-    private void Update()
+    private void Update() 
     {
-        if(ToRoom.isZoomed) cam.orthographicSize = 2;
+        if(ToRoom.isZoomed) 
+        {
+            Resize(2000f, 1120f, 0f);
+            ToRoom.isZoomed = false;
+            isZooming = -1;
+        }
 
         if (!ToRoom.isZoomed && monitorClicked)
         {
-            Resize(2010f, 1130f, 0f);
-            zoom = 2f;
-            zoom = Mathf.Clamp(zoom, 2, 5);
-            StartCoroutine(SceneDelay());
-        } else if (ToRoom.isZoomed)
-        {
-            zoom = 5f;
-            ToRoom.isZoomed = false;
+            isZooming = 1;
         }
-        cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, zoom, ref velocity, smoothTime);
+        
+        if (isZooming == -1)
+        {
+            Resize(rectTransform.rect.width-25, rectTransform.rect.height-14, 0f);
+            if(rectTransform.rect.height==280)
+            {
+                isZooming = 0;
+            }
+        } 
+        
+        if (isZooming == 1)
+        {
+            Resize(rectTransform.rect.width+25, rectTransform.rect.height+14, 0f);
+            if(rectTransform.rect.height==1120)
+            {
+                isZooming = 0;
+                SceneManager.LoadScene("Computer");
+            }
+        }
         
     }
 
@@ -62,12 +79,7 @@ public class ToMonitor : MonoBehaviour
 
     private void Resize(float newWidth, float newHeight, float yOffset)
     {
-        // Zmiana rozmiaru
         rectTransform.sizeDelta = new Vector2(newWidth, newHeight);
-        Debug.Log("Nowy rozmiar: szerokoœæ = " + newWidth + ", wysokoœæ = " + newHeight);
-
-        // Przesuniêcie obiektu w osi Y
         rectTransform.anchoredPosition = new Vector2(0, yOffset);
-        Debug.Log("Nowa pozycja: " + rectTransform.anchoredPosition);
     }
 }
