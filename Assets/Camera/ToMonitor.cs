@@ -37,11 +37,12 @@ public class ToMonitor : MonoBehaviour
 
         zoom = Mathf.Clamp(zoom, 2, 5);
         cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, zoom, ref velocity, smoothTime);
+        Debug.Log(cam.orthographicSize);
     }
 
     private IEnumerator SceneDelay()
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.7f);
         SceneManager.LoadScene("Computer");
     }
 }
