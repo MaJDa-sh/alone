@@ -83,7 +83,7 @@ public class WindowEventsManager : MonoBehaviour
         
         if (isCaring && pickedCar != null)
         {
-            Debug.Log("Samochód rusza...");
+            
 
             // Pozycja docelowa
             Vector3 targetPosition = new Vector3(-10f, pickedCar.transform.position.y, pickedCar.transform.position.z);
@@ -127,7 +127,9 @@ public class WindowEventsManager : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(5, 12)); // Ustalanie czasu miêdzy przejazdami
             isCaring = true;
+            Debug.Log("Car picked");
             CarMoving(); // Losowanie samochodu i uruchomienie ruchu
+
         }
     }
 

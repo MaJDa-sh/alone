@@ -1,12 +1,12 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ToRoom : MonoBehaviour
+public class PhoneDialogue : MonoBehaviour
 {
-    public static bool isZoomed { get; set; }
-
     public DialogueManager dialogueManager;
-    [SerializeField] private Camera cam;
     private bool isDialogue = false;
     private int index = 0;
     public class Dialogue
@@ -29,31 +29,23 @@ public class ToRoom : MonoBehaviour
         new Dialogue("yuo", "Just exploring the world."),
     };
 
-    private void Start()
-    {
-    }
-
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isDialogue)
-        {
-            ToRoom.isZoomed = true;
-            SceneManager.LoadScene("Room");
-        }
-        else if (Input.GetMouseButtonDown(0) && isDialogue)
+        if (Input.GetMouseButtonDown(0) && isDialogue)
         {
             dialogueManager.CloseDialogue();
             index++;
-            if (index<4)
+            if (index < dialogues.Length)
             {
                 dialogueManager.ShowDialogue(dialogues[index].name, dialogues[index].dialogue);
-            } else
+            }
+            else
             {
                 isDialogue = false;
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && !isDialogue)
+        if (Input.GetKeyDown(KeyCode.W) && !isDialogue && index<dialogues.Length)
         {
             dialogueManager.ShowDialogue(dialogues[index].name, dialogues[index].dialogue);
             isDialogue = true;
