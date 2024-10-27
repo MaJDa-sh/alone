@@ -10,12 +10,15 @@ public class GameManager : MonoBehaviour
     public int questionIndex;
     public int goodAnswers;
     public int gameHealth;
-    public int windowHealth;
+    public int windowHealth = 5;
     public bool phoneRang = false;
     public bool firstScreenInteraction = true;
     public bool badBuy = false;
     public bool bird = false;
     public bool kids = false;
+    public bool isLightON = true;
+    public int badGuyLevel = 0;
+
 
 
     private void Awake()
