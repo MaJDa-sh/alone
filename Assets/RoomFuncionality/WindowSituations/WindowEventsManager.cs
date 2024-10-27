@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 
 public class WindowEventsManager : MonoBehaviour
@@ -13,6 +15,7 @@ public class WindowEventsManager : MonoBehaviour
     bool isCaring = false;
     private GameObject pickedCar;
     private int carNumber;
+    [Header("--------------- Cars ----------")]
     public GameObject carBrown;
     public GameObject carOrange;
     public GameObject carBlue;
@@ -22,7 +25,13 @@ public class WindowEventsManager : MonoBehaviour
     private Vector3 startPosition;
 
     bool isPeopling = false;
-    public GameObject people;
+    public GameObject people1;
+    public GameObject people2;
+    public GameObject people3;
+
+    private Vector3 startPosition2;
+
+
 
     bool isBadGuing = false;
     public GameObject badguy;
@@ -38,6 +47,8 @@ public class WindowEventsManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(SceneDelay()); // Uruchamiamy coroutine na pocz¹tku
+        StartCoroutine(SceneDelayPeople());
+        startPosition2 = people1.transform.position;
     }
 
 
@@ -74,9 +85,9 @@ public class WindowEventsManager : MonoBehaviour
             startPosition = pickedCar.transform.position; // Zapisanie pozycji startowej
             pickedCar.SetActive(true);
         }
-
-
     }
+
+    
 
     private void Update()
     {
@@ -100,13 +111,25 @@ public class WindowEventsManager : MonoBehaviour
                 isCaring = false; // Zatrzymanie ruchu po osi¹gniêciu celu
             }
         }
+
+        if (isPeopling)
+        {
+            // Pozycja docelowa
+            Vector3 targetPosition = new Vector3(10f, people1.transform.position.y, people1.transform.position.z);
+
+            // Przesuwanie obiektu w kierunku docelowej pozycji z prêdkoœci¹ moveSpeed
+            people1.transform.position = Vector3.MoveTowards(people1.transform.position, targetPosition, 1 * Time.deltaTime);
+
+
+            // Sprawdzenie, czy pozycja osi¹gnê³a cel
+            if (people1.transform.position == targetPosition)
+            {
+                people1.transform.position = startPosition2;
+                people1.SetActive(false);
+                isPeopling = false; // Zatrzymanie ruchu po osi¹gniêciu celu
+            }
+        }
         
-    }
-
-
-    public void People()
-    {
-
     }
     public void BadGuy()
     {
@@ -129,7 +152,17 @@ public class WindowEventsManager : MonoBehaviour
             isCaring = true;
             Debug.Log("Car picked");
             CarMoving(); // Losowanie samochodu i uruchomienie ruchu
+        }
+    }
 
+    private IEnumerator SceneDelayPeople()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(8, 12));
+            isPeopling = true;
+            Debug.Log("people walk");
+            people1.SetActive(true);            
         }
     }
 
