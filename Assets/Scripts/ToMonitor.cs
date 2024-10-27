@@ -18,6 +18,26 @@ public class ToMonitor : MonoBehaviour
     private RectTransform rectTransform;
     [SerializeField] private Camera cam;
 
+    public class Dialogue
+    {
+        public string name;
+        public string dialogue;
+
+        public Dialogue(string name, string dialogue)
+        {
+            this.name = name;
+            this.dialogue = dialogue;
+        }
+    }
+
+    private Dialogue[] dialogues = new Dialogue[]
+    {
+        new Dialogue("Instructor", "It's halloween and you "),
+        new Dialogue("Instructor", "ohno"),
+        new Dialogue("Instructor", "What are you up to?"),
+        new Dialogue("Instructor", "Just exploring the world."),
+    };
+
 
     private void Start()
     {
