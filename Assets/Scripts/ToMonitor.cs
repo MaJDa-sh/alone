@@ -34,7 +34,7 @@ public class ToMonitor : MonoBehaviour
     {
         if(ToRoom.isZoomed) 
         {
-            Resize(3840, 2160, 0);
+            Resize(1620, 1062, 0, 0);
             ToRoom.isZoomed = false;
             isZooming = -1;
         }
@@ -46,8 +46,8 @@ public class ToMonitor : MonoBehaviour
         
         if (isZooming == -1)
         {
-            Resize(rectTransform.rect.width-32, rectTransform.rect.height-18, 0f);
-            if(rectTransform.rect.height==1080)
+            Resize(rectTransform.rect.width-90, rectTransform.rect.height-59, rectTransform.anchoredPosition.x - 3.5f, rectTransform.anchoredPosition.y + 4.75f);
+            if(rectTransform.rect.height == 354)
             {
                 isZooming = 0;
             }
@@ -55,8 +55,8 @@ public class ToMonitor : MonoBehaviour
         
         if (isZooming == 1)
         {
-            Resize(rectTransform.rect.width+32, rectTransform.rect.height+18, 0f);
-            if(rectTransform.rect.height == 2160)
+            Resize(rectTransform.rect.width+90, rectTransform.rect.height+59, rectTransform.anchoredPosition.x + 3.5f, rectTransform.anchoredPosition.y - 4.75f);
+            if(rectTransform.rect.height == 1062)
             {
                 isZooming = 0;
                 SceneManager.LoadScene("Computer");
@@ -69,9 +69,9 @@ public class ToMonitor : MonoBehaviour
         monitorClicked = true;
     }
 
-    private void Resize(float newWidth, float newHeight, float yOffset)
+    private void Resize(float newWidth, float newHeight, float xOffset, float yOffset)
     {
         rectTransform.sizeDelta = new Vector2(newWidth, newHeight);
-        rectTransform.anchoredPosition = new Vector2(90, -90);
+        rectTransform.anchoredPosition = new Vector2(xOffset, yOffset);
     }
 }
