@@ -9,13 +9,14 @@ public class GameManager : MonoBehaviour
     public int segment;
     public int questionIndex;
     public int goodAnswers;
-    public int gameHealth;
+    public int gameHealth = 4;
     public int windowHealth;
     public bool phoneRang = false;
     public bool firstScreenInteraction = true;
     public bool badBuy = false;
     public bool bird = false;
     public bool kids = false;
+    public int currentQuestionIndex = 0;
 
 
     private void Awake()

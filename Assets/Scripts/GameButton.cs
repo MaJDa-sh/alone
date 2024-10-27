@@ -9,6 +9,7 @@ public class GameButton : MonoBehaviour
 {
     public Button button;
     public GameObject window;
+
     void Start()
     {
         button.onClick.AddListener(MonitorOpen);
