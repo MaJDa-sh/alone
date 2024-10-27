@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public bool bird = false;
     public bool kids = false;
     public int currentQuestionIndex = 0;
+    public bool firstInteraction = true;
 
 
     private void Awake()

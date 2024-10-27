@@ -53,10 +53,10 @@ public class ToRoom : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && !isDialogue)
+        /*if (Input.GetKeyDown(KeyCode.W) && !isDialogue)
         {
             dialogueManager.ShowDialogue(dialogues[index].name, dialogues[index].dialogue);
             isDialogue = true;
-        }
+        }*/
     }
 }
