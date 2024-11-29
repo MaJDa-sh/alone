@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: b152f5ff9af4f7c40b88d2c4d93aa56b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - DialoguePrefab: {fileID: 3239843801896704194, guid: fc02660026c2d314cb0cf8948eef256d, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
